@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import BPMDisplay from "./components/BPMDisplay";
 import Footer from "./components/Footer";
-import Nav from "./components/Nav";
+import Navbar from "./components/Navbar";
 import "./styles/app.scss";
 
 function App() {
@@ -10,7 +10,7 @@ function App() {
 
   return (
     <div className="app">
-      <Nav setShowMilliseconds={setShowMilliseconds} />
+      <Navbar title="BPM Tapper" setShowMilliseconds={setShowMilliseconds} />
       <BPMDisplay showMilliseconds={showMilliseconds} />
       <Footer />
     </div>

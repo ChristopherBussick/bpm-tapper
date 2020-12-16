@@ -1,11 +1,7 @@
 import React from "react";
 import NavItem from "./NavItem";
 
-function Nav( { setShowMilliseconds }) {
-
-  function playMetronome() {
-    // todo
-  }
+function Nav( { setShowMilliseconds } ) {
 
   function toggleShowMilliseconds() {
     setShowMilliseconds(showMilliseconds => !showMilliseconds);

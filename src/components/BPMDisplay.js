@@ -14,10 +14,9 @@ function BPMDisplay( { showMilliseconds }) {
 
 
   useEffect(() => {
-    console.log("BPMDisplay rendered!");
     window.addEventListener("keydown", keyDownHandler);
 
-    // Clean up when the component is removed from the UI (Should not happen here, but still).
+    // Clean up when the component is removed from the UI (Should not happen here because it is always on screen, but still have this for proper structuring).
     return () => {
       window.removeEventListener("keydown", keyDownHandler);
     }
@@ -62,16 +61,13 @@ function BPMDisplay( { showMilliseconds }) {
     var currentTapTime = new Date().getTime();
     var currentTapTimeDifference = currentTapTime - lastTapTime;
 
-    // Do not set the bpm on the first tap (You need at least two taps to calculate the bpm).
+    // Do not calculate or set the bpm on the first tap (You need at least two taps to calculate the bpm).
     if (lastTapTime) {
-      // 2. Always take the latest 5 (?? maybe that's a good number) time differences between taps, add them up and divide them by 5 to get the average time difference
+      // 2. Store all previous time differences between taps, add them up and divide their sum by their amount to get the average time difference
       
-      // 2.1 Always only store the latest 5 time differences 
+      // 2.1 Store all previous time differences between taps
       // Handling arrays as lists in JS: https://alligator.io/js/push-pop-shift-unshift-array-methods/
       lastTapTimeDifferences.push(currentTapTimeDifference);
-      if (lastTapTimeDifferences.length > 5) {
-        lastTapTimeDifferences.shift();
-      }
 
       // 2.2 Add up the time differences and divide the sum by the amount of stored time differences to get the average
       var averageTimeDifference = 0;
@@ -141,13 +137,15 @@ function BPMDisplay( { showMilliseconds }) {
 
   return (
     <div className="bpm-display">
-      <div className={"clipboard-message"} ref={clipboardMessageRef}>Copied to clipboard!</div>
-      <div className={"start-message" + (isCalculating ? " invisible" : "")}>Tap any key to start</div>
-      <div className={"bpm-number-container" + (showMilliseconds ? " baseline-align" : "")}>
-        <div className="bpm-number" onClick={copyBPMToClipboard}>{showMilliseconds ? getBPMInMillisecondFormat() : <div className="integers" ref={bpmNumberIntegerRef}>{Math.round(bpm)}</div>}</div>
-        <div className="bpm-label">BPM</div>
+      <div className="messages-and-bpm-container">
+        <div className={"clipboard-message"} ref={clipboardMessageRef}>Copied to clipboard!</div>
+        <div className={"start-message" + (isCalculating ? " invisible" : "")}>Tap any key to start</div>
+        <div className={"bpm-number-container" + (showMilliseconds ? " baseline-align" : "")}>
+          <div className="bpm-number" onClick={copyBPMToClipboard}>{showMilliseconds ? getBPMInMillisecondFormat() : <div className="integers" ref={bpmNumberIntegerRef}>{Math.round(bpm)}</div>}</div>
+          <div className="bpm-label">BPM</div>
+        </div>
+        <button className={"reset-button" + (isCalculating ? "" : " invisible")} onClick={resetBPM}>Reset</button>
       </div>
-      <button className={"reset-button" + (isCalculating ? "" : " invisible")} onClick={resetBPM}>Reset</button>
       <audio ref={audioTapRef} src={tapSound} />
     </div>
   );
