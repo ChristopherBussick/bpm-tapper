@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import tapSound from "../res/sounds/MRNBV3_03_A_Metronome_127_Dmaj_2_Trimmed.wav";
 
 let lastTapTime;
@@ -16,16 +16,8 @@ function BPMDisplay( { showMilliseconds, playAudio }) {
 
   const [isCalculating, setCalculating] = useState(false);
 
-  useEffect(() => {
-    window.addEventListener("keydown", keyDownHandler);
-
-    // Clean up when the component is removed from the UI (Should not happen here because it is always on screen, but still keep this for proper structuring).
-    return () => {
-        window.removeEventListener("keydown", keyDownHandler);
-    }
-  }, [playAudio, isCalculating]);
-
-  function keyDownHandler() {
+  const keyDownHandler = useCallback(() => {
+    console.log("usecallback");
     if (!isCalculating) {
       setCalculating(true);
     }
@@ -44,7 +36,17 @@ function BPMDisplay( { showMilliseconds, playAudio }) {
     if (playAudio) {
       playTapSound();
     }
-  }
+  }, [isCalculating, playAudio]);
+
+  useEffect(() => {
+    console.log("useeffect");
+    window.addEventListener("keydown", keyDownHandler);
+
+    // Clean up when the component is removed from the UI (Should not happen here because it is always on screen, but still keep this for proper structuring).
+    return () => {
+        window.removeEventListener("keydown", keyDownHandler);
+    }
+  }, [keyDownHandler]);
 
   function playTapSound() {
     if (audioTapRef.current.paused) {
