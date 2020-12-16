@@ -11,8 +11,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    position: relative;
     padding-top: 1.2rem;
+    position: relative;
 
     .clipboard-message {
       opacity: 0;
@@ -31,11 +31,27 @@
         // TODO: Change the cursor and make it custom for a better look indicating "copy to clipboard".
         cursor: copy;
         color: #C0EE7C;
+        z-index: 0;
+        position: relative;
+
+        .pulse-effect {
+          // TODO: Improve this
+          height: 0%;
+          width: 0%;
+          background: linear-gradient(180deg, #20A8A8 0%, #2087C5 100%);
+          position: absolute;
+          z-index: -1;
+          border-radius: 50%;
+          opacity: 0;
+          transform: translate(-50%, -50%);
+          left: 50%;
+          top: 50%;
+        }
         
         .bpm-ms-format-container {
           display: flex;
           align-items: baseline;
-          
+
           .decimals {
             font-size: 5rem;
             font-weight: 300;
@@ -47,6 +63,7 @@
         font-size: 2.5rem;
         font-weight: 300;
         color: #C0EE7C;
+        z-index: 1;
       } 
     }
 
@@ -56,6 +73,7 @@
 
     .reset-button {
       font-size: 1.2rem;
+      z-index: 1;
     }
   }
 
@@ -67,14 +85,14 @@
     animation: popUp 2s;
   }
 
+  .animation-pulse {
+    animation: pulse 0.5s;
+  }
+
   @keyframes growIn {
     0% {
       opacity: 0.8;
       font-size: 7rem;
-      
-      // Todo: Add a color pulse effect
-      // background-color: #2087C5;
-      // border-radius: 100px;
     }
   }
   
@@ -95,6 +113,26 @@
 
     100% {
       font-size: 0.9rem;
+    }
+  }
+
+  @keyframes pulse {
+    0% {
+      opacity: 1;
+    }
+
+    50% {
+      opacity: 0.75;
+    }
+
+    75% {
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 0;
+      height: 400%;
+      width: 400%;
     }
   }
 }
