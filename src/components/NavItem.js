@@ -1,7 +1,7 @@
 import React from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-function NavItem( { type, name, onClick, label, styling, state, iconOn, iconOff }) {
+function NavItem( { type, name, onClick, label, styling, state, iconOn, iconOff, labelOn, labelOff }) {
 
   var navItem;
 
@@ -16,7 +16,7 @@ function NavItem( { type, name, onClick, label, styling, state, iconOn, iconOff 
         <label className={name + "-label"} htmlFor={name}>{label}</label>
       </div>;
     } else if (styling === "icon") {
-      navItem = <FontAwesomeIcon className="fa-icon nav-item fa-fw" icon={state ? iconOn : iconOff} onClick={onClick} />
+      navItem = <FontAwesomeIcon className="icon-checkbox nav-item fa-icon fa-fw" icon={state ? iconOn : iconOff} onClick={onClick} title={state ? labelOn : labelOff} />
     }
   } else if (type === "button") {
         navItem = <button className={name + " nav-item"} onClick={onClick}>{label}</button>;

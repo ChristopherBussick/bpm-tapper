@@ -17,7 +17,6 @@ function BPMDisplay( { showMilliseconds, playAudio }) {
   const [isCalculating, setCalculating] = useState(false);
 
   const keyDownHandler = useCallback(() => {
-    console.log("usecallback");
     if (!isCalculating) {
       setCalculating(true);
     }
@@ -39,7 +38,6 @@ function BPMDisplay( { showMilliseconds, playAudio }) {
   }, [isCalculating, playAudio]);
 
   useEffect(() => {
-    console.log("useeffect");
     window.addEventListener("keydown", keyDownHandler);
 
     // Clean up when the component is removed from the UI (Should not happen here because it is always on screen, but still keep this for proper structuring).

@@ -16,7 +16,7 @@ function Nav( { setShowMilliseconds, playAudio, setPlayAudio } ) {
   return (
     <nav className="nav">
       <NavItem type="checkbox" name="show-milliseconds-checkbox" onClick={toggleShowMilliseconds} label="Show Milliseconds" />
-      <NavItem type="checkbox" styling="icon" state={playAudio} iconOn={faVolumeUp} iconOff={faVolumeMute} name="toggle-audio-button" onClick={toggleAudio} label="Toggle Audio" />
+      <NavItem type="checkbox" styling="icon" name="toggle-audio-button" state={playAudio} onClick={toggleAudio} iconOn={faVolumeUp} iconOff={faVolumeMute} labelOn="Turn audio off" labelOff="Turn audio on" />
     </nav>
   );
 }
