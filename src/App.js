@@ -8,10 +8,12 @@ function App() {
 
   const [showMilliseconds, setShowMilliseconds] = useState(false);
 
+  const [playAudio, setPlayAudio] = useState(true);
+
   return (
     <div className="app">
-      <Navbar title="BPM Tapper" setShowMilliseconds={setShowMilliseconds} />
-      <BPMDisplay showMilliseconds={showMilliseconds} />
+      <Navbar title="BPM Tapper" setShowMilliseconds={setShowMilliseconds} playAudio={playAudio} setPlayAudio={setPlayAudio} />
+      <BPMDisplay showMilliseconds={showMilliseconds} playAudio={playAudio} />
       <Footer />
     </div>
   );

@@ -4,7 +4,7 @@ import tapSound from "../res/sounds/MRNBV3_03_A_Metronome_127_Dmaj_2_Trimmed.wav
 let lastTapTime;
 let lastTapTimeDifferences = [];
 
-function BPMDisplay( { showMilliseconds }) {
+function BPMDisplay( { showMilliseconds, playAudio }) {
 
   const bpmNumberIntegerRef = useRef(null);
   
@@ -16,11 +16,11 @@ function BPMDisplay( { showMilliseconds }) {
   useEffect(() => {
     window.addEventListener("keydown", keyDownHandler);
 
-    // Clean up when the component is removed from the UI (Should not happen here because it is always on screen, but still have this for proper structuring).
-    return () => {
-      window.removeEventListener("keydown", keyDownHandler);
-    }
-  }, []);
+    // Clean up when the component is removed from the UI (Should not happen here because it is always on screen, but still keep this for proper structuring).
+    // return () => {
+    //   window.removeEventListener("keydown", keyDownHandler);
+    // }
+  }, [playAudio]);
 
   const [isCalculating, setCalculating] = useState(false);
 
@@ -42,7 +42,12 @@ function BPMDisplay( { showMilliseconds }) {
       bpmNumberIntegerRef.current.classList.add("animation-grow");
     }, 1);
 
-    // Play a sound
+    if (playAudio) {
+      playTapSound();
+    }
+  }
+
+  function playTapSound() {
     if (audioTapRef.current.paused) {
       audioTapRef.current.play();
     } else {

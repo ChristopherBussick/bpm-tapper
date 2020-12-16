@@ -34,17 +34,9 @@
   }
 
   input[type="checkbox"] {
-    // border: none;
-    // outline: none;
-
     height: 1.3rem;
     width: 1.3rem;
-
     // Checkboxes can not be styled (color, etc.) through css, so they have to be reset and then created as custom checkboxes
-    // Todo:
-    // - Create actual custom checkmark symbol to be shown when checked.
-    // - Change border color
-    // - Change checkbox unchecked color
     appearance: none;
     background-color: #C0EE7C;
 
@@ -65,6 +57,17 @@
     // -moz-appearance: none;
     // height: 20px;
     // width: 20px; 
+  }
+
+  .checkmark {
+    position: absolute;
+    font-size: 1.1rem;
+    color: #20A8A8;
+    opacity: 0;
+    // Slightly adjust it to be more in the center
+    margin-bottom: 2px;
+    // Ignores clicks on the checkmark and recognizes it as a click on the actual checkbox below
+    pointer-events: none;
   }
 
   .invisible {

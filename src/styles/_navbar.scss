@@ -9,6 +9,10 @@
     font-size: 1.2rem;
     font-weight: 500;
   }
+
+  .fa-icon {
+    font-size: 1.4rem;
+  }
   
   .nav {
     display: flex;
@@ -40,17 +44,6 @@
           cursor: pointer;
           height: 100%;
           width: 100%;
-        }
-        
-        .checkmark {
-          position: absolute;
-          font-size: 1.1rem;
-          color: #20A8A8;
-          opacity: 0;
-          // Slightly adjust it to be more in the center
-          margin-bottom: 2px;
-          // Ignores clicks on the checkmark and recognizes it as a click on the actual checkbox below
-          pointer-events: none;
         }
       }
       
