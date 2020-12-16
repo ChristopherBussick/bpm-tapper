@@ -11,20 +11,19 @@ function BPMDisplay( { showMilliseconds, playAudio }) {
   const clipboardMessageRef = useRef(null);
   
   const audioTapRef = useRef(null);
+  
+  const [bpm, setBPM] = useState(0);
 
+  const [isCalculating, setCalculating] = useState(false);
 
   useEffect(() => {
     window.addEventListener("keydown", keyDownHandler);
 
     // Clean up when the component is removed from the UI (Should not happen here because it is always on screen, but still keep this for proper structuring).
-    // return () => {
-    //   window.removeEventListener("keydown", keyDownHandler);
-    // }
-  }, [playAudio]);
-
-  const [isCalculating, setCalculating] = useState(false);
-
-  const [bpm, setBPM] = useState(0);
+    return () => {
+        window.removeEventListener("keydown", keyDownHandler);
+    }
+  }, [playAudio, isCalculating]);
 
   function keyDownHandler() {
     if (!isCalculating) {
@@ -54,7 +53,6 @@ function BPMDisplay( { showMilliseconds, playAudio }) {
       audioTapRef.current.currentTime = 0;
     }
   }
-  
 
   function calculateBPM() {
     // General explanation (as I understand it):
@@ -138,7 +136,6 @@ function BPMDisplay( { showMilliseconds, playAudio }) {
       clipboardMessageRef.current.classList.add("animation-popup");
     }, 1);
   }
-
 
   return (
     <div className="bpm-display">
