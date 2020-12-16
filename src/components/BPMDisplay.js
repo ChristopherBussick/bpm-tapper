@@ -10,8 +10,6 @@ function BPMDisplay( { showMilliseconds, playAudio }) {
 
   const bpmNumberIntegerRef = useRef(null);
 
-  const pulseEffectRef = useRef(null);
-
   const clipboardMessageRef = useRef(null);
   
   const audioTapRef = useRef(null);
@@ -38,16 +36,6 @@ function BPMDisplay( { showMilliseconds, playAudio }) {
     // - Find out why this does not work sequentially
     setTimeout(function() {
       bpmNumberIntegerRef.current.classList.add("animation-grow");
-    }, 1);
-
-    if (pulseEffectRef.current.classList.contains("animation-pulse")) {
-      pulseEffectRef.current.classList.remove("animation-pulse");
-    }
-    // This tiny timeout is necessary, because having remove() and add() sequentially after one another does not work for whatever reason
-    // TODO:
-    // - Find out why this does not work sequentially
-    setTimeout(function() {
-      pulseEffectRef.current.classList.add("animation-pulse");
     }, 1);
 
     if (playAudio) {
@@ -166,7 +154,6 @@ function BPMDisplay( { showMilliseconds, playAudio }) {
         <div className={"start-message" + (isCalculating ? " invisible" : "")}>Tap any key to start</div>
         <div className={"bpm-number-container" + (showMilliseconds ? " baseline-align" : "")}>
           <div className="bpm-number" onClick={copyBPMToClipboard}>
-            <div className="pulse-effect" ref={pulseEffectRef} />
             {showMilliseconds ? getBPMInMillisecondFormat() : <div className="integers" ref={bpmNumberIntegerRef}>{Math.round(bpm)}</div>}
           </div>
           <div className="bpm-label">BPM</div>
