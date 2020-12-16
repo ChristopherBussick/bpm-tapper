@@ -1,0 +1,94 @@
+.bpm-display {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 1 1 auto;
+  user-select: none;
+  padding-bottom: 150px;
+
+  .clipboard-message {
+    opacity: 0;
+    // Todo:
+    // - Position this in a better, more stable way than using absolute positioning and margin
+    position: absolute;
+    margin-bottom: 250px;
+  }
+
+  .bpm-number-container {
+    display: flex;
+    align-items: center;
+    
+    .bpm-number {
+      margin-right: 15px;
+      font-size: 8rem;
+      font-weight: 400;
+      // TODO: Change the cursor and make it custom for a better look indicating "copy to clipboard".
+      cursor: copy;
+      color: #C0EE7C;
+
+      .bpm-ms-format-container {
+        display: flex;
+        align-items: baseline;
+
+        .decimals {
+          font-size: 5rem;
+          font-weight: 300;
+        }
+      }
+    }
+    
+    .bpm-label {
+      font-size: 2.5rem;
+      font-weight: 300;
+      color: #C0EE7C;
+    } 
+  }
+
+  .baseline-align {
+    align-items: baseline;
+  }
+
+  .reset-button {
+    font-size: 1.2rem;
+  }
+
+  .animation-grow {
+    animation: growIn 0.5s;
+  }
+  
+  .animation-popup {
+    animation: popUp 2s;
+  }
+
+  @keyframes growIn {
+    0% {
+      opacity: 0.8;
+      font-size: 7rem;
+      
+      // Todo: Add this color pulse effect
+      // background-color: #2087C5;
+      // border-radius: 100px;
+    }
+  }
+  
+  @keyframes popUp {
+    0% {
+      font-size: 0.8rem;
+    }
+    
+    10% {
+      font-size: 1rem;
+      opacity: 1;
+    }
+  
+    80% {
+      font-size: 1rem;
+      opacity: 1;
+    }
+
+    100% {
+      font-size: 0.9rem;
+    }
+  }
+}

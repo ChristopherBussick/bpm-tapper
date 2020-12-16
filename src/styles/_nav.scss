@@ -1,0 +1,53 @@
+.nav {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  .nav-item {
+    margin: 12px;
+
+    &:not(Button) {
+      font-weight: 600;
+    }
+  }
+
+  .show-milliseconds-checkbox-container {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+
+    .checkbox-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      height: 22px;
+      width: 23px;
+
+      // transform: scale(1.5);
+      
+      .show-milliseconds-checkbox {
+        cursor: pointer;
+        height: 100%;
+        width: 100%;
+      }
+
+      .checkmark {
+        position: absolute;
+        font-size: 1.1rem;
+        color: #20A8A8;
+        opacity: 0;
+        // Slightly adjust it to be more in the center
+        margin-bottom: 2px;
+        // Ignores clicks on the checkmark and recognizes it as a click on the actual checkbox below
+        pointer-events: none;
+      }
+    }
+
+    .show-milliseconds-checkbox-label {
+      cursor: pointer;
+      padding-left: 6px;
+    }
+  }
+}

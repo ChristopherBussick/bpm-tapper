@@ -1,0 +1,77 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Quicksand', sans-serif;
+  transition: 250ms;
+  color: #C0EE7C;
+}
+
+.app {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(180deg, #20A8A8 0%, #2087C5 100%);
+
+  a {
+    text-decoration: none;
+  }
+  
+  button {
+    padding: 5px 12px;
+    outline: none;
+    cursor: pointer;
+    background: #C0EE7C;
+    color: #20A8A8;
+    border: none;
+    font-size: 1rem;
+    font-weight: 700;
+    user-select: none;
+
+    // While being pressed down
+    &:active {
+      box-shadow: inset 0px 0px 3px black;
+    }
+  }
+
+  input[type="checkbox"] {
+    // border: none;
+    // outline: none;
+
+    height: 1.3rem;
+    width: 1.3rem;
+
+    // Checkboxes can not be styled (color, etc.) through css, so they have to be reset and then created as custom checkboxes
+    // Todo:
+    // - Create actual custom checkmark symbol to be shown when checked.
+    // - Change border color
+    // - Change checkbox unchecked color
+    appearance: none;
+    background-color: #C0EE7C;
+
+    &:checked + .checkmark {
+      opacity: 1;
+    }
+    
+    &:focus {
+      outline: none;
+    }
+
+    // While being pressed down
+    &:active {
+      box-shadow: inset 0px 0px 3px black;
+    }
+
+    // -webkit-appearance: none;
+    // -moz-appearance: none;
+    // height: 20px;
+    // width: 20px; 
+  }
+
+  .invisible {
+    opacity: 0;
+  }
+}
+
+@import "nav";
+@import "bpmDisplay";
+@import "footer";

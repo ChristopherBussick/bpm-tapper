@@ -1,0 +1,15 @@
+.footer {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 12px;
+  font-weight: 500;
+  
+  .about {
+    font-size: 1.5rem;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #20A8A8;
+    }
+  }
+}
