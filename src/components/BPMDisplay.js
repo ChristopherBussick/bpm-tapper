@@ -6,21 +6,21 @@ let lastTapTimeDifferences = [];
 
 function BPMDisplay( { showMilliseconds, playAudio }) {
 
-  // REFS
+  // Refs
 
   const bpmNumberIntegerRef = useRef(null);
 
   const clipboardMessageRef = useRef(null);
   
   const audioTapRef = useRef(null);
-  
-  // STATES
+
+  // States
 
   const [bpm, setBPM] = useState(0);
 
   const [isCalculating, setCalculating] = useState(false);
 
-  // CALLBACKS
+  // Event Handlers
 
   const keyDownHandler = useCallback(() => {
     if (!isCalculating) {
@@ -43,7 +43,7 @@ function BPMDisplay( { showMilliseconds, playAudio }) {
     }
   }, [isCalculating, playAudio]);
 
-  // USEEFFECT
+  // UseEffect
 
   useEffect(() => {
     window.addEventListener("keydown", keyDownHandler);
@@ -54,7 +54,7 @@ function BPMDisplay( { showMilliseconds, playAudio }) {
     }
   }, [keyDownHandler]);
 
-  // FUNCTIONS
+  // Functions
 
   function playTapSound() {
     if (audioTapRef.current.paused) {
@@ -113,9 +113,9 @@ function BPMDisplay( { showMilliseconds, playAudio }) {
 
     // Decimal places check for when the timer is reset and only shows a "0". It should then still show decimals.
     var bpmInMSFormat = <div className="bpm-ms-format-container">
-                          <div className="integers" ref={bpmNumberIntegerRef}>{integers}</div>
+                          <p className="integers" ref={bpmNumberIntegerRef}>{integers}</p>
                           .
-                          <div className="decimals">{decimalPlaces ? decimalPlaces : "0000"}</div>
+                          <p className="decimals">{decimalPlaces ? decimalPlaces : "0000"}</p>
                         </div>;
 
     return bpmInMSFormat;
@@ -150,13 +150,13 @@ function BPMDisplay( { showMilliseconds, playAudio }) {
   return (
     <div className="bpm-display">
       <div className="messages-and-bpm-container">
-        <div className={"clipboard-message"} ref={clipboardMessageRef}>Copied to clipboard!</div>
-        <div className={"start-message" + (isCalculating ? " invisible" : "")}>Tap any key to start</div>
+        <p className={"clipboard-message"} ref={clipboardMessageRef}>Copied to clipboard!</p>
+        <p className={"start-message" + (isCalculating ? " invisible" : "")}>Tap any key to start</p>
         <div className={"bpm-number-container" + (showMilliseconds ? " baseline-align" : "")}>
           <div className="bpm-number" onClick={copyBPMToClipboard}>
             {showMilliseconds ? getBPMInMillisecondFormat() : <div className="integers" ref={bpmNumberIntegerRef}>{Math.round(bpm)}</div>}
           </div>
-          <div className="bpm-label">BPM</div>
+          <p className="bpm-label">BPM</p>
         </div>
         <button className={"reset-button" + (isCalculating ? "" : " invisible")} onClick={resetBPM}>Reset</button>
       </div>
