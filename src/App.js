@@ -5,14 +5,18 @@ import Navbar from "./components/Navbar";
 import "./styles/app.scss";
 
 function App() {
-
   const [showMilliseconds, setShowMilliseconds] = useState(false);
 
   const [playAudio, setPlayAudio] = useState(true);
 
   return (
     <div className="app">
-      <Navbar title="BPM Tapper" setShowMilliseconds={setShowMilliseconds} playAudio={playAudio} setPlayAudio={setPlayAudio} />
+      <Navbar
+        title="BPM Tapper"
+        setShowMilliseconds={setShowMilliseconds}
+        playAudio={playAudio}
+        setPlayAudio={setPlayAudio}
+      />
       <BPMDisplay showMilliseconds={showMilliseconds} playAudio={playAudio} />
       <Footer />
     </div>

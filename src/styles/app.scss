@@ -1,27 +1,27 @@
 * {
   margin: 0;
   padding: 0;
-  font-family: 'Quicksand', sans-serif;
+  font-family: "Quicksand", sans-serif;
   transition: 250ms;
-  color: #C0EE7C;
+  color: #c0ee7c;
 }
 
 .app {
   height: 100vh;
   display: flex;
   flex-direction: column;
-  background: linear-gradient(180deg, #20A8A8 0%, #2087C5 100%);
+  background: linear-gradient(180deg, #20a8a8 0%, #2087c5 100%);
 
   a {
     text-decoration: none;
   }
-  
+
   button {
     padding: 5px 12px;
     outline: none;
     cursor: pointer;
-    background: #C0EE7C;
-    color: #20A8A8;
+    background: #c0ee7c;
+    color: #20a8a8;
     border: none;
     font-size: 1rem;
     font-weight: 700;
@@ -38,12 +38,12 @@
     width: 1.3rem;
     // Checkboxes can not be styled (color, etc.) through css, so they have to be reset and then created as custom checkboxes
     appearance: none;
-    background-color: #C0EE7C;
+    background-color: #c0ee7c;
 
     &:checked + .checkmark {
       opacity: 1;
     }
-    
+
     &:focus {
       outline: none;
     }
@@ -57,7 +57,7 @@
   .checkmark {
     position: absolute;
     font-size: 1.1rem;
-    color: #20A8A8;
+    color: #20a8a8;
     opacity: 0;
     // Slightly adjust it to be more in the center
     margin-bottom: 2px;

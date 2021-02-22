@@ -4,14 +4,13 @@ import tapSound from "../res/sounds/MRNBV3_03_A_Metronome_127_Dmaj_2_Trimmed.wav
 let lastTapTime;
 let lastTapTimeDifferences = [];
 
-function BPMDisplay( { showMilliseconds, playAudio }) {
-
+function BPMDisplay({ showMilliseconds, playAudio }) {
   // Refs
 
   const bpmNumberIntegerRef = useRef(null);
 
   const clipboardMessageRef = useRef(null);
-  
+
   const audioTapRef = useRef(null);
 
   // States
@@ -34,7 +33,7 @@ function BPMDisplay( { showMilliseconds, playAudio }) {
     // This tiny timeout is necessary, because having remove() and add() sequentially after one another does not work for whatever reason
     // TODO:
     // - Find out why this does not work sequentially
-    setTimeout(function() {
+    setTimeout(function () {
       bpmNumberIntegerRef.current.classList.add("animation-grow");
     }, 1);
 
@@ -50,8 +49,8 @@ function BPMDisplay( { showMilliseconds, playAudio }) {
 
     // Clean up when the component is removed from the UI (Should not happen here because it is always on screen, but still keep this for proper structuring).
     return () => {
-        window.removeEventListener("keydown", keyDownHandler);
-    }
+      window.removeEventListener("keydown", keyDownHandler);
+    };
   }, [keyDownHandler]);
 
   // Functions
@@ -77,20 +76,21 @@ function BPMDisplay( { showMilliseconds, playAudio }) {
     // Do not calculate or set the bpm on the first tap (You need at least two taps to calculate the bpm).
     if (lastTapTime) {
       // 2. Store all previous time differences between taps, add them up and divide their sum by their amount to get the average time difference
-      
+
       // 2.1 Store all previous time differences between taps
       // Handling arrays as lists in JS: https://alligator.io/js/push-pop-shift-unshift-array-methods/
       lastTapTimeDifferences.push(currentTapTimeDifference);
 
       // 2.2 Add up the time differences and divide the sum by the amount of stored time differences to get the average
       var averageTimeDifference = 0;
-      lastTapTimeDifferences.forEach(timeDifference => {
+      lastTapTimeDifferences.forEach((timeDifference) => {
         averageTimeDifference = averageTimeDifference + timeDifference;
       });
-      averageTimeDifference = averageTimeDifference / lastTapTimeDifferences.length;
-      
+      averageTimeDifference =
+        averageTimeDifference / lastTapTimeDifferences.length;
+
       // 3. Convert the time difference into the corresponding BPM
-      var currentBPM = 1000 / averageTimeDifference * 60;
+      var currentBPM = (1000 / averageTimeDifference) * 60;
 
       setBPM(currentBPM);
     }
@@ -109,24 +109,31 @@ function BPMDisplay( { showMilliseconds, playAudio }) {
     var integers = Math.floor(bpm);
     var bpmPreparedForDecimals = Math.round(bpm * 10000);
     var amountIntegerDigits = integers.toString().length;
-    var decimalPlaces = bpmPreparedForDecimals.toString().slice(amountIntegerDigits);
+    var decimalPlaces = bpmPreparedForDecimals
+      .toString()
+      .slice(amountIntegerDigits);
 
     // Decimal places check for when the timer is reset and only shows a "0". It should then still show decimals.
-    var bpmInMSFormat = <div className="bpm-ms-format-container">
-                          <p className="integers" ref={bpmNumberIntegerRef}>{integers}</p>
-                          .
-                          <p className="decimals">{decimalPlaces ? decimalPlaces : "0000"}</p>
-                        </div>;
+    var bpmInMSFormat = (
+      <div className="bpm-ms-format-container">
+        <p className="integers" ref={bpmNumberIntegerRef}>
+          {integers}
+        </p>
+        .<p className="decimals">{decimalPlaces ? decimalPlaces : "0000"}</p>
+      </div>
+    );
 
     return bpmInMSFormat;
   }
 
-  function copyBPMToClipboard() {    
+  function copyBPMToClipboard() {
     var tempInputElement = document.createElement("input");
     var integers = Math.floor(bpm);
     var bpmPreparedForDecimals = Math.round(bpm * 10000);
     var amountIntegerDigits = integers.toString().length;
-    var decimalPlaces = bpmPreparedForDecimals.toString().slice(amountIntegerDigits);
+    var decimalPlaces = bpmPreparedForDecimals
+      .toString()
+      .slice(amountIntegerDigits);
 
     var bpmInMSFormat = integers + "." + decimalPlaces;
     tempInputElement.value = showMilliseconds ? bpmInMSFormat : Math.round(bpm);
@@ -142,7 +149,7 @@ function BPMDisplay( { showMilliseconds, playAudio }) {
     // This tiny timeout is necessary, because having remove() and add() sequentially after one another does not work for whatever reason
     // TODO:
     // - Find out why this does not work sequentially
-    setTimeout(function() {
+    setTimeout(function () {
       clipboardMessageRef.current.classList.add("animation-popup");
     }, 1);
   }
@@ -150,15 +157,34 @@ function BPMDisplay( { showMilliseconds, playAudio }) {
   return (
     <div className="bpm-display">
       <div className="messages-and-bpm-container">
-        <p className={"clipboard-message"} ref={clipboardMessageRef}>Copied to clipboard!</p>
-        <p className={"start-message" + (isCalculating ? " invisible" : "")}>Tap any key to start</p>
-        <div className={"bpm-number-container" + (showMilliseconds ? " baseline-align" : "")}>
+        <p className={"clipboard-message"} ref={clipboardMessageRef}>
+          Copied to clipboard!
+        </p>
+        <p className={"start-message" + (isCalculating ? " invisible" : "")}>
+          Tap any key to start
+        </p>
+        <div
+          className={
+            "bpm-number-container" + (showMilliseconds ? " baseline-align" : "")
+          }
+        >
           <div className="bpm-number" onClick={copyBPMToClipboard}>
-            {showMilliseconds ? getBPMInMillisecondFormat() : <div className="integers" ref={bpmNumberIntegerRef}>{Math.round(bpm)}</div>}
+            {showMilliseconds ? (
+              getBPMInMillisecondFormat()
+            ) : (
+              <div className="integers" ref={bpmNumberIntegerRef}>
+                {Math.round(bpm)}
+              </div>
+            )}
           </div>
           <p className="bpm-label">BPM</p>
         </div>
-        <button className={"reset-button" + (isCalculating ? "" : " invisible")} onClick={resetBPM}>Reset</button>
+        <button
+          className={"reset-button" + (isCalculating ? "" : " invisible")}
+          onClick={resetBPM}
+        >
+          Reset
+        </button>
       </div>
       <audio ref={audioTapRef} src={tapSound} />
     </div>

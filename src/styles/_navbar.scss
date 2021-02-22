@@ -18,40 +18,40 @@
   .icon-checkbox {
     cursor: pointer;
   }
-  
+
   .nav {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    
+
     .nav-item {
       margin: 12px;
-      
+
       &:not(Button) {
         font-weight: 600;
       }
     }
-    
+
     .show-milliseconds-checkbox-container {
       display: flex;
       align-items: center;
       cursor: pointer;
       user-select: none;
-      
+
       .checkbox-container {
         display: flex;
         justify-content: center;
         align-items: center;
         height: 22px;
         width: 23px;
-        
+
         .show-milliseconds-checkbox {
           cursor: pointer;
           height: 100%;
           width: 100%;
         }
       }
-      
+
       .show-milliseconds-checkbox-label {
         cursor: pointer;
         padding-left: 6px;
