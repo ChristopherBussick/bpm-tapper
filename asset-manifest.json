@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/bpm-tapper/static/css/main.3515e508.chunk.css",
+    "main.js": "/bpm-tapper/static/js/main.4119d6ba.chunk.js",
+    "main.js.map": "/bpm-tapper/static/js/main.4119d6ba.chunk.js.map",
+    "runtime-main.js": "/bpm-tapper/static/js/runtime-main.46a4210f.js",
+    "runtime-main.js.map": "/bpm-tapper/static/js/runtime-main.46a4210f.js.map",
+    "static/js/2.06010014.chunk.js": "/bpm-tapper/static/js/2.06010014.chunk.js",
+    "static/js/2.06010014.chunk.js.map": "/bpm-tapper/static/js/2.06010014.chunk.js.map",
+    "index.html": "/bpm-tapper/index.html",
+    "static/css/main.3515e508.chunk.css.map": "/bpm-tapper/static/css/main.3515e508.chunk.css.map",
+    "static/js/2.06010014.chunk.js.LICENSE.txt": "/bpm-tapper/static/js/2.06010014.chunk.js.LICENSE.txt",
+    "static/media/MRNBV3_03_A_Metronome_127_Dmaj_2_Trimmed.2fc7e0f6.wav": "/bpm-tapper/static/media/MRNBV3_03_A_Metronome_127_Dmaj_2_Trimmed.2fc7e0f6.wav"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.46a4210f.js",
+    "static/js/2.06010014.chunk.js",
+    "static/css/main.3515e508.chunk.css",
+    "static/js/main.4119d6ba.chunk.js"
+  ]
+}
