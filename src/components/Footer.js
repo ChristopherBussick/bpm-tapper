@@ -3,11 +3,11 @@ function Footer() {
     <div className="footer">
       <a
         className="about"
-        href="http://www.christopherbussick.de"
+        href="http://www.christopherbussick.com"
         target="_blank"
         rel="noreferrer"
       >
-        By Chrizzy
+        By Christopher Bussick
       </a>
     </div>
   );
